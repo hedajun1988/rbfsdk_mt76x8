@@ -1,6 +1,7 @@
 
 # How to build test program
 
+## linux
 You need to install the cmake tool on your compilation host and execute the following command to compile
 
 
@@ -12,6 +13,10 @@ cd build
 cmake ..
 make
 ```
+
+## freertos
+
+
 
 
 # For more information about rbfsdk, please refer to：
