@@ -16,7 +16,9 @@ make
 
 ## freertos
 
+Since freertos has relatively large version differences, the platform code used in rbfsdk is provided in a packaged form. You can find it in ${your_rbf_sdk_path}/platform/freertos/${your_plaform}.
 
+You need to import the header files, static libraries and platform package code in the SDK into your development project for compilation.
 
 
 # For more information about rbfsdk, please refer to：
