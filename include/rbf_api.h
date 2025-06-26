@@ -21,7 +21,7 @@ extern "C"
 
 #define RB_SDK_VERSION             0
 #define RB_SDK_REVISION            2
-#define RB_SDK_PATCH               8
+#define RB_SDK_PATCH               9
 
 #define RBF_DEVICE_MAC_LEN         (8)         /**< RBF sub-device MAC length */
 #define RBF_DEVICE_SN_LEN          (16)        /**< RBF sub-device serial number length */
@@ -233,6 +233,21 @@ typedef struct
     int32_t realtime_rssi; 
     int32_t avg_rssi;     
 } RBF_hub_noise_t;
+
+
+typedef enum 
+{
+    RBF_WAVE_TYPE_CARRIER = 0,   /**< Carrier wave */
+    RBF_WAVE_TYPE_DATA,           /**< Data wave */
+} RBF_wave_type_t;
+
+
+typedef enum 
+{
+    RBF_ANT_BUILTIN_0 = 0,    /**< Built-in antenna 0 */
+    RBF_ANT_BUILTIN_1,       /**< Built-in antenna 1 */
+    RBF_ANT_EXTERNAL,        /**< External antenna */
+} RBF_ant_index_t;
 
 /**
  * @brief HUB  event callback functions
@@ -508,6 +523,26 @@ int rbf_get_hub_version(void);
  * the noise info will be returned in the callback function.
  */
 int rbf_get_hub_noise(void);
+
+
+/**
+ * @brief Start carrier transmission
+ * 
+ * @param channel Carrier transmission channel
+ * @param power The actual transmit power is power divided by 10.
+ * @param type wave type
+ * @param index Carrier transmit antenna selection
+ * @return int 0: successful, -1: failed
+ */
+int rbf_send_carrier(int channel, int power, RBF_wave_type_t type, RBF_ant_index_t index);
+
+
+/**
+ * @brief Stop carrier transmission
+ * 
+ * @return int 
+ */
+int rbf_send_carrier_stop();
 
 #ifdef __cplusplus
 }
