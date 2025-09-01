@@ -51,9 +51,9 @@ stCmd_t all_cmds[] = {
     {"findme",test_findme_start,"findme [cat_id][no]"},
     {"stopfindme",test_findme_stop,"stopfindme [cat_id][no]"},
     {"init",init_rbf,"init rbf"},
-    {"hub", test_hub, "hub [version][noise]"},
+    {"hub", test_hub, "hub [version][noise][reset]"},
     {"device", test_device, "device [delete][all/cat_id][no]"},
-    {"setfreq", test_setfreq, "setfreq [0/1/2] 0:868 1:915 2:433"},
+    {"sethub", test_sethub, "sethub [0/1/2/3/4/5] 0:868 1:915 2:433 3:aus 915 4: wpc 868 5:mal 915[custom code]"},
 } ;
 
 
@@ -281,15 +281,19 @@ static int rbf_port_read(unsigned char *buf, int bufsize, int timeout)
         return -1;
     }
 
-    FD_ZERO(&rset);
-    FD_SET(m_serial_fd,&rset);
+    if (timeout > 0) {
 
-    _timeout.tv_sec = (time_t)(timeout / 1000); 
-    _timeout.tv_usec = 0;                      
-    int retval = select(m_serial_fd + 1,&rset, NULL, NULL, &_timeout);
+        FD_ZERO(&rset);
+        FD_SET(m_serial_fd,&rset);
 
-    if(retval <= 0) {
-        return 0;
+        _timeout.tv_sec = (time_t)(timeout / 1000); 
+        _timeout.tv_usec = 0;                      
+        int retval = select(m_serial_fd + 1,&rset, NULL, NULL, &_timeout);
+
+        if(retval <= 0) {
+            return 0;
+        }
+        
     }
 
     int len = read(m_serial_fd, buf, bufsize);
@@ -330,6 +334,7 @@ int main()
 {
     pthread_t stThread;
 
+    printf("rbf sdk version: %d.%d.%d\n", RB_SDK_VERSION, RB_SDK_REVISION, RB_SDK_PATCH);
 #if defined(CONFIG_RPC_ENABLE) && (CONFIG_RPC_ENABLE == 1)
     rpc_init(NULL);
 #endif

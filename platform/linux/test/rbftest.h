@@ -16,7 +16,7 @@ void test_outdoor_sounder(char *argv[], int argc);
 void test_indoor_siren(char *argv[], int argc);
 void test_pir(char *argv[], int argc);
 void test_temphumi(char *argv[], int argc);
-void test_setfreq(char *argv[], int argc);
+void test_sethub(char *argv[], int argc);
 void test_setarming(char *argv[], int argc);
 void test_keypad(char *argv[], int argc);
 void test_relay(char *argv[], int argc);
