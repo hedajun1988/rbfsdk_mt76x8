@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "rbf_api.h"
+#include "rbf_api_ex.h"
 #include "rbftest.h"
 #include "rbf_magnetic.h"
 #include "rbf_keyfob.h"
@@ -709,64 +709,40 @@ void test_sethub(char *argv[], int argc)
         {
         case 0:
             printf("set hub frequency to 868\r\n");
-            if (custom_code != 0) {
-                printf("set hub custom code to %d\r\n", custom_code);
-                rbf_set_hub_ex(RBF_FREQ_868, 0, custom_code);
-            } else {
-                rbf_set_freq(RBF_FREQ_868);
-            }
+            printf("set hub custom code to %d\r\n", custom_code);
+            rbf_set_hub_ex(RBF_FREQ_868, 0, custom_code);
             s_setFreq = RBF_FREQ_868;
             break;
 
         case 1:
             printf("set hub frequency to 915\r\n");
-            if (custom_code != 0) {
-                printf("set hub custom code to %d\r\n", custom_code);
-                rbf_set_hub_ex(RBF_FREQ_915, 0, custom_code);
-            } else {
-                rbf_set_freq(RBF_FREQ_915);
-            }
+            printf("set hub custom code to %d\r\n", custom_code);
+            rbf_set_hub_ex(RBF_FREQ_915, 0, custom_code);
             s_setFreq = RBF_FREQ_915;
             break;
 
         case 2: 
             printf("set hub frequency to 433\r\n");
-            if (custom_code != 0) {
-                printf("set hub custom code to %d\r\n", custom_code);
-                rbf_set_hub_ex(RBF_FREQ_433, 0, custom_code);
-            } else {
-                rbf_set_freq(RBF_FREQ_433);
-            }
+            printf("set hub custom code to %d\r\n", custom_code);
+            rbf_set_hub_ex(RBF_FREQ_433, 0, custom_code);
             s_setFreq = RBF_FREQ_433;
             break;
         case 3: 
             printf("set hub frequency to aus 915\r\n");
-            if (custom_code != 0) {
-                printf("set hub custom code to %d\r\n", custom_code);
-                rbf_set_hub_ex(RBF_FREQ_916, 0, custom_code);
-            } else {
-                rbf_set_freq(RBF_FREQ_916);
-            }
+            printf("set hub custom code to %d\r\n", custom_code);
+            rbf_set_hub_ex(RBF_FREQ_916, 0, custom_code);
             s_setFreq = RBF_FREQ_916;
             break;
         case 4: 
             printf("set hub frequency to wpc 868\r\n");
-            if (custom_code != 0) {
-                printf("set hub custom code to %d\r\n", custom_code);
-                rbf_set_hub_ex(RBF_FREQ_WPC_868, 0, custom_code);
-            } else {
-                rbf_set_freq(RBF_FREQ_WPC_868);
-            }
+            printf("set hub custom code to %d\r\n", custom_code);
+            rbf_set_hub_ex(RBF_FREQ_WPC_868, 0, custom_code);
             s_setFreq = RBF_FREQ_WPC_868;
             break;
         case 5: 
             printf("set hub frequency to MAL 915\r\n");
-            if (custom_code != 0) {
-                printf("set hub custom code to %d\r\n", custom_code);
-                rbf_set_hub_ex(RBF_FREQ_MAL_915, 0, custom_code);
-            } else {
-                rbf_set_freq(RBF_FREQ_MAL_915);
-            }
+            printf("set hub custom code to %d\r\n", custom_code);
+            rbf_set_hub_ex(RBF_FREQ_MAL_915, 0, custom_code);
             s_setFreq = RBF_FREQ_MAL_915;
             break;
         

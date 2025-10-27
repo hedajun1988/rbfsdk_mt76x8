@@ -21,7 +21,7 @@ extern "C"
 
 #define RB_SDK_VERSION             0
 #define RB_SDK_REVISION            3
-#define RB_SDK_PATCH               1
+#define RB_SDK_PATCH               3
 
 #define RBF_DEVICE_MAC_LEN         (8)         /**< RBF sub-device MAC length */
 #define RBF_DEVICE_SN_LEN          (16)        /**< RBF sub-device serial number length */
@@ -222,20 +222,20 @@ typedef struct
 
 typedef struct 
 {
-    uint8_t major;
-    uint8_t sub;
-    uint8_t patch;
-    uint8_t build_year;
-    uint8_t build_month;
-    uint8_t build_date;
-    uint8_t build_no;
+    uint8_t major;  /**< Hub major version number */
+    uint8_t sub;    /**< Hub minor version number */
+    uint8_t patch;  /**< Hub patch version number */
+    uint8_t build_year;     /**< Hub build year */
+    uint8_t build_month;    /**< Hub build month  */
+    uint8_t build_date;     /**< Hub build date */
+    uint8_t build_no;       /**< Hub build number */
 }RBF_hub_sw_ver_t;
 
 
 typedef struct
 {
-    int32_t realtime_rssi; 
-    int32_t avg_rssi;     
+    int32_t realtime_rssi; /**< Hub real-time background noise */
+    int32_t avg_rssi;       /**< Hub average background noise */
 } RBF_hub_noise_t;
 
 
@@ -511,15 +511,6 @@ int rbf_set_freq(RBF_Freq_t freq);
 int rbf_set_hub(RBF_Freq_t freq, unsigned char jamming_threshold);
 
 
-/**
- * @brief Set the hub with extended parameters
- * 
- * @param freq  Currently supports RBF_FREQ_868/RBF_FREQ_915/RBF_FREQ_433
- * @param jamming_threshold Jamming threshold default-0
- * @param cust_code Customer code, default-0
- * @return int 0: Setting successful, -1: Setting failed
- */
-int rbf_set_hub_ex(RBF_Freq_t freq, unsigned char jamming_threshold, unsigned int cust_code);
 
 /**
  * @brief Get hub software version
@@ -540,24 +531,16 @@ int rbf_get_hub_version(void);
 int rbf_get_hub_noise(void);
 
 
-/**
- * @brief Start carrier transmission
- * 
- * @param channel Carrier transmission channel
- * @param power The actual transmit power is power divided by 10.
- * @param type wave type
- * @param index Carrier transmit antenna selection
- * @return int 0: successful, -1: failed
- */
-int rbf_send_carrier(int channel, int power, RBF_wave_type_t type, RBF_ant_index_t index);
 
 
 /**
- * @brief Stop carrier transmission
+ * @brief Change ant index
  * 
+ * @param index 
  * @return int 
  */
-int rbf_send_carrier_stop();
+int rbf_change_ant(RBF_ant_index_t index);
+
 
 
 /**
