@@ -55,22 +55,22 @@ typedef int (*rbf_water_leak_input_status_update_callback_t)(uint8_t no, rbf_wat
 
 
 /**
- * @brief  Magnetic sensor callback functions cluster
- * 
+ * @brief Water leak sensor callback functions cluster
+ *
  */
-typedef struct 
+typedef struct
 {
-    rbf_water_leak_heartbeat_callback_t hb_cb;
-    rbf_water_leak_input_status_update_callback_t input_status_cb;  
+    rbf_water_leak_heartbeat_callback_t hb_cb;                             /**< Heartbeat callback */
+    rbf_water_leak_input_status_update_callback_t input_status_cb;         /**< Input status update callback */
 }rbf_water_leak_callbacks_t;
 
 
 
 /**
- * @brief Register water_leak sensor callback functions cluster
- * 
- * @param cbs Magnetic sensor callback functions cluster
- * @return int 0 - Registration successful, 1 - Registration failed
+ * @brief Register water leak sensor callback functions cluster
+ *
+ * @param cbs Water leak sensor callback functions cluster
+ * @return int 0 - Registration successful, -1 - Registration failed
  */
 int rbf_water_leak_register_callbacks(rbf_water_leak_callbacks_t* cbs);
 

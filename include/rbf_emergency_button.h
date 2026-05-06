@@ -21,7 +21,7 @@ extern "C"
 
 
 /**
- * @brief Structure to represent a emergency button device heartbeat event.
+ * @brief Structure to represent an emergency button device heartbeat event.
  */
 typedef struct 
 {
@@ -30,27 +30,30 @@ typedef struct
 }rbf_emergency_button_heartbeat_t;
 
 
-typedef enum 
+/**
+ * @brief Emergency button input event types
+ */
+typedef enum
 {
-    RBF_EMERGENCY_BUTTON_INPUT_EVT_ALARM = 0,  /**< Emergency Button Alarm */
+    RBF_EMERGENCY_BUTTON_INPUT_EVT_ALARM = 0,  /**< Emergency button alarm pressed */
 }rbf_emergency_button_input_evt_t;
 
 /**
- * @brief Callback function to handle  Emergency Button device heartbeat events.
- * 
- * This function is called whenever a  Emergency Button device sends a heartbeat event.
+ * @brief Callback function to handle emergency button device heartbeat events.
+ *
+ * This function is called whenever an emergency button device sends a heartbeat event.
  */
 typedef int (*rbf_emergency_button_heartbeat_callback_t)(uint8_t no, rbf_emergency_button_heartbeat_t* heartbeat);  
 
 
 /**
- * @brief Callback for Emergency Button input event 
- * 
+ * @brief Callback for emergency button input event
+ *
  */
 typedef int (*rbf_emergency_button_input_evt_callback_t)(uint8_t no, rbf_emergency_button_input_evt_t evt); 
 /**
- * @brief  Emergency Button callback functions cluster
- * 
+ * @brief Emergency button callback functions cluster
+ *
  */
 typedef struct 
 {
@@ -61,10 +64,10 @@ typedef struct
 
 
 /**
- * @brief Register Emergency Button callback functions cluster
- * 
- * @param cbs Emergency Button  callback functions cluster
- * @return int 0 - Registration successful, 1 - Registration failed
+ * @brief Register emergency button callback functions cluster
+ *
+ * @param cbs Emergency button callback functions cluster
+ * @return int 0 - Registration successful, -1 - Registration failed
  */
 int rbf_emergency_button_register_callbacks(rbf_emergency_button_callbacks_t* cbs);
 

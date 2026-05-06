@@ -1,0 +1,7 @@
+<map id="RBF_subdev_batch_settings_t" name="RBF_subdev_batch_settings_t">
+<area shape="rect" id="node1" title="Batch settings for sub&#45;devices — combines IO alarm, sounder, and UpdateMe settings in one call." alt="" coords="118,184,334,211"/>
+<area shape="rect" id="node2" href="$structRBF__dev__id__t.html" title="Sub&#45;device ID addressed by device category and device registration number." alt="" coords="5,95,116,121"/>
+<area shape="rect" id="node3" href="$structRBF__sounder__setting__t.html" title="Sounder setting entry pairing a device number with its control parameters." alt="" coords="141,95,311,121"/>
+<area shape="rect" id="node4" href="$structrbf__sounder__param__t.html" title="Sounder control parameters Sounder mode represents a persistent state, while sounder action represent..." alt="" coords="146,5,306,32"/>
+<area shape="rect" id="node5" href="$structRBF__io__alarm__setting__t.html" title="IO device arming/disarming setting entry (no and status pair)" alt="" coords="335,95,511,121"/>
+</map>

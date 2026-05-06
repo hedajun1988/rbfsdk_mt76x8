@@ -1,0 +1,5 @@
+<map id="rbf_water_leak_callbacks_t" name="rbf_water_leak_callbacks_t">
+<area shape="rect" id="node1" title="Water leak sensor callback functions cluster." alt="" coords="87,109,285,136"/>
+<area shape="rect" id="node2" href="$structrbf__water__leak__input__status__t.html" title="Water leak sensor input information." alt="" coords="5,5,164,47"/>
+<area shape="rect" id="node3" href="$structrbf__water__leak__heartbeat__t.html" title="Structure to represent a water leak device heartbeat event." alt="" coords="188,13,389,39"/>
+</map>

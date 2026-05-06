@@ -1,0 +1,5 @@
+<map id="rbf_outdoor_siren_callbacks_t" name="rbf_outdoor_siren_callbacks_t">
+<area shape="rect" id="node1" title="Outdoor siren callback functions cluster." alt="" coords="117,109,333,136"/>
+<area shape="rect" id="node2" href="$structrbf__outdoor__siren__heartbeat__t.html" title="Structure to represent an outdoor siren device heartbeat event." alt="" coords="5,13,224,39"/>
+<area shape="rect" id="node3" href="$structrbf__outdoor__siren__input__status__t.html" title="Outdoor siren status information (power, solar, battery, tamper)" alt="" coords="248,5,424,47"/>
+</map>

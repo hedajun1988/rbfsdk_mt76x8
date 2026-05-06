@@ -1,0 +1,5 @@
+<map id="rbf_temp_humi_callbacks_t" name="rbf_temp_humi_callbacks_t">
+<area shape="rect" id="node1" title="Temperature and humidity sensor callback functions cluster." alt="" coords="103,95,304,121"/>
+<area shape="rect" id="node2" href="$structrbf__temp__humi__status__t.html" title="Temperature and humidity sensor threshold alarm status." alt="" coords="5,5,185,32"/>
+<area shape="rect" id="node3" href="$structrbf__temp__humi__heartbeat__t.html" title="Structure to represent a temperature and humidity sensor device heartbeat event." alt="" coords="210,5,413,32"/>
+</map>

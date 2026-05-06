@@ -1,0 +1,4 @@
+<map id="RBF_qrfh_setting_t" name="RBF_qrfh_setting_t">
+<area shape="rect" id="node1" title="QRFH setting entry pairing a device with its QRFH data." alt="" coords="5,95,151,121"/>
+<area shape="rect" id="node2" href="$structRBF__qrfh__data__t.html" title="QRFH (Quick Response Frequency Hopping) configuration data for a sub&#45;device." alt="" coords="13,5,143,32"/>
+</map>

@@ -64,6 +64,12 @@ typedef struct
 }rbf_smoke_callbacks_t;
 
 
+/**
+ * @brief Register smoke sensor callback functions cluster
+ *
+ * @param cbs Smoke sensor callback functions cluster
+ * @return int 0 - Registration successful, -1 - Registration failed
+ */
 int rbf_smoke_register_callbacks(rbf_smoke_callbacks_t* cbs);
 
 #ifdef __cplusplus

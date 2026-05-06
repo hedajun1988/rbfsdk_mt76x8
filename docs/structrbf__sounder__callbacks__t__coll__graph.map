@@ -1,0 +1,5 @@
+<map id="rbf_sounder_callbacks_t" name="rbf_sounder_callbacks_t">
+<area shape="rect" id="node1" title="Sounder callback functions cluster." alt="" coords="122,95,301,121"/>
+<area shape="rect" id="node2" href="$structrbf__sounder__input__status__t.html" title="sounder status information" alt="" coords="5,5,204,32"/>
+<area shape="rect" id="node3" href="$structrbf__sounder__heartbeat__t.html" title="Structure to represent a sounder device heartbeat event." alt="" coords="229,5,410,32"/>
+</map>

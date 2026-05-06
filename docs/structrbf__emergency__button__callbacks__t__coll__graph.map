@@ -1,0 +1,4 @@
+<map id="rbf_emergency_button_callbacks_t" name="rbf_emergency_button_callbacks_t">
+<area shape="rect" id="node1" title="Emergency button callback functions cluster." alt="" coords="5,109,175,151"/>
+<area shape="rect" id="node2" href="$structrbf__emergency__button__heartbeat__t.html" title="Structure to represent an emergency button device heartbeat event." alt="" coords="5,5,175,47"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="rbf_magnetic_callbacks_t" name="rbf_magnetic_callbacks_t">
+<area shape="rect" id="node1" title="Magnetic sensor callback functions cluster." alt="" coords="81,109,269,136"/>
+<area shape="rect" id="node2" href="$structrbf__magnetic__input__status__t.html" title="Magnetic sensor input information." alt="" coords="5,5,153,47"/>
+<area shape="rect" id="node3" href="$structrbf__magnetic__heartbeat__t.html" title="Structure to represent a magnetic device heartbeat event." alt="" coords="177,13,368,39"/>
+</map>

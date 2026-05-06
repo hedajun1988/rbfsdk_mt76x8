@@ -1,0 +1,5 @@
+<map id="rbf_smartplug_callbacks_t" name="rbf_smartplug_callbacks_t">
+<area shape="rect" id="node1" title="Smart plug callback functions cluster." alt="" coords="91,109,285,136"/>
+<area shape="rect" id="node2" href="$structrbf__smartplug__output__status__t.html" title="Smart plug output status reported on state change." alt="" coords="5,5,168,47"/>
+<area shape="rect" id="node3" href="$structrbf__smartplug__heartbeat__t.html" title="Smart plug heartbeat data reported periodically with electrical measurements." alt="" coords="192,13,387,39"/>
+</map>

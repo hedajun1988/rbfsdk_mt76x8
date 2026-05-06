@@ -19,7 +19,7 @@ extern "C"
 #endif
 
 /**
- * @brief Structure to represent a magnetic device heartbeat event.
+ * @brief Structure to represent a remote control (keyfob) device heartbeat event.
  */
 typedef struct 
 {

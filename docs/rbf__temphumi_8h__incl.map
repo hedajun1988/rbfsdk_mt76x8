@@ -1,0 +1,5 @@
+<map id="app/include/rbf_temphumi.h" name="app/include/rbf_temphumi.h">
+<area shape="rect" id="node1" title="Temperature and humidity sensor API — heartbeat with temp/humi readings, threshold alarms,..." alt="" coords="5,5,211,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="16,80,99,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="123,80,194,107"/>
+</map>

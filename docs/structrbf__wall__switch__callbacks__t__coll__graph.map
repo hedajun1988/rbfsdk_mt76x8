@@ -1,0 +1,5 @@
+<map id="rbf_wall_switch_callbacks_t" name="rbf_wall_switch_callbacks_t">
+<area shape="rect" id="node1" title="Wall switch callback functions cluster." alt="" coords="97,109,299,136"/>
+<area shape="rect" id="node2" href="$structrbf__wall__switch__output__status__t.html" title="Wall switch output status reported on state change." alt="" coords="5,5,177,47"/>
+<area shape="rect" id="node3" href="$structrbf__wall__switch__heartbeat__t.html" title="Wall switch heartbeat data reported periodically with electrical measurements." alt="" coords="202,13,407,39"/>
+</map>

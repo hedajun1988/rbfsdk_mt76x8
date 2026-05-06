@@ -12,7 +12,7 @@ void test_rssi_stop(char *argv[], int argc);
 void test_ledset(char *argv[], int argc);
 void test_delete(char *argv[], int argc);
 void test_list(char *argv[], int argc);
-void test_outdoor_sounder(char *argv[], int argc);
+void test_outdoor_siren(char *argv[], int argc);
 void test_indoor_siren(char *argv[], int argc);
 void test_pir(char *argv[], int argc);
 void test_temphumi(char *argv[], int argc);

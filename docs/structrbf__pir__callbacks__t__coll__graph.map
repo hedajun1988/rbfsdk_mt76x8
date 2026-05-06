@@ -1,0 +1,5 @@
+<map id="rbf_pir_callbacks_t" name="rbf_pir_callbacks_t">
+<area shape="rect" id="node1" title="pir sensor callback functions cluster" alt="" coords="104,95,248,121"/>
+<area shape="rect" id="node2" href="$structrbf__pir__input__status__t.html" title="PIR sensor input information." alt="" coords="5,5,168,32"/>
+<area shape="rect" id="node3" href="$structrbf__pir__heartbeat__t.html" title="Structure to represent a pir device heartbeat event." alt="" coords="192,5,339,32"/>
+</map>

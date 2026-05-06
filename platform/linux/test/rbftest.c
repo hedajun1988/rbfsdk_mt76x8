@@ -16,9 +16,9 @@
 #include "rbftest.h"
 #include "rbf_magnetic.h"
 #include "rbf_keyfob.h"
-#include "rbf_sounder.h"
+#include "rbf_outdoor_siren.h"
 #include "rbf_indoor_siren.h"
-#include "rbf_pir.h"
+#include "rbf_indoor_pir.h"
 #include "rbf_emergency_button.h"
 #include "rbf_temphumi.h"
 #include "rbf_water_leak.h"
@@ -40,6 +40,7 @@
 
 static int s_newDevice = 0;
 RBF_Freq_t s_setFreq = RBF_FREQ_915;
+int s_setCustom_code = 0;
 
 
 int test_rbf_dev_register_reponse(RBF_register_response_t* reponse)
@@ -69,8 +70,8 @@ int test_rbf_dev_register_reponse(RBF_register_response_t* reponse)
 
 int test_rbf_set_hub(void)
 {
-    printf("init param freq[%d] \n", s_setFreq);
-    rbf_set_freq(s_setFreq);
+    // printf("init param freq[%d] custom code[%d]\n", s_setFreq, s_setCustom_code);
+    // rbf_set_hub_ex(s_setFreq, 0, s_setCustom_code);
     return 0;
 }
 
@@ -123,15 +124,15 @@ int rbf_magnetic_input_status_callback(uint8_t no, rbf_magnetic_input_status_t* 
     return 0;
 }
 
-int rbf_sounder_heartbeat_callback(uint8_t no, rbf_sounder_heartbeat_t* heartbeat)
+int rbf_outdoor_siren_heartbeat_callback(uint8_t no, rbf_outdoor_siren_heartbeat_t* heartbeat)
 {
-    printf("sounder [%d] heartbeat: power %u\n", no, heartbeat->power);
+    printf("outdoor_siren [%d] heartbeat: power %u\n", no, heartbeat->power);
     return 0;
 }
 
-int rbf_sounder_input_status_callback(uint8_t no, rbf_sounder_input_status_t* input_status)
+int rbf_outdoor_siren_input_status_callback(uint8_t no, rbf_outdoor_siren_input_status_t* input_status)
 {
-    printf("sounder [%d] input status:  power_supply_status %d, solar_panels_fault %d,"
+    printf("outdoor_siren [%d] input status:  power_supply_status %d, solar_panels_fault %d,"
                         "battery_fault %d,  charge_status %d,  tamper %d\n", no, input_status->power_supply_status, 
                                                                             input_status->solar_panels_fault,
                                                                             input_status->battery_fault,
@@ -140,21 +141,21 @@ int rbf_sounder_input_status_callback(uint8_t no, rbf_sounder_input_status_t* in
     return 0;
 }
 
-int rbf_pir_heartbeat_callback(uint8_t no, rbf_pir_heartbeat_t* heartbeat)
+int rbf_indoor_pir_heartbeat_callback(uint8_t no, rbf_indoor_pir_heartbeat_t* heartbeat)
 {
-    printf("pir [%d] heartbeat: power %u\n", no, heartbeat->power);
+    printf("indoor_pir [%d] heartbeat: power %u\n", no, heartbeat->power);
     return 0;
 }
 
-int rbf_pir_input_evt_callback(uint8_t no, rbf_pir_input_evt_t input_evt)
+int rbf_indoor_pir_input_evt_callback(uint8_t no, rbf_indoor_pir_input_evt_t input_evt)
 {
-    printf("pir [%d] input evt:  %x\n", no, input_evt);
+    printf("indoor_pir [%d] input evt:  %x\n", no, input_evt);
     return 0;
 }
 
-int rbf_pir_input_status_callback(uint8_t no, rbf_pir_input_status_t* input_status)
+int rbf_indoor_pir_input_status_callback(uint8_t no, rbf_indoor_pir_input_status_t* input_status)
 {
-    printf("pir [%d] input status:  tamper %d, fault %d\n", no, input_status->tamper, input_status->fault);
+    printf("indoor_pir [%d] input status:  tamper %d, fault %d\n", no, input_status->tamper, input_status->fault);
     return 0;
 }
 
@@ -357,7 +358,7 @@ int rbf_ota_upgrade_evt_handle(RBF_ota_evt_t evt, RBF_ota_status_t* status)
     return 0;
 }
 
-int rbf_subdev_ota_upgrade_evt_handle(RBF_subdev_ota_evt_t evt, RBF_subdev_ota_faild_response_t* responses, uint8_t response_count)
+int rbf_subdev_ota_upgrade_evt_handle(RBF_subdev_ota_evt_t evt, RBF_subdev_ota_faild_response_t* responses, uint8_t response_count, int trans_byte)
 {
     if (evt == RBF_SUBDEV_OTA_EVT_UPGRADE_COMPLETE) {
         printf("subdev OTA sucess\n");
@@ -388,9 +389,9 @@ int test_rbf_init(void)
     RBF_evt_callbacks_t cbs = {0};
     rbf_magnetic_callbacks_t mc_cbs = {0};
     rbf_keyfob_callbacks_t keyfob_cbs = {0};
-    rbf_sounder_callbacks_t sounder_cbs = {0};
+    rbf_outdoor_siren_callbacks_t outdoor_siren_cbs = {0};
     rbf_indoor_siren_callbacks_t indoor_siren_cbs = {0};
-    rbf_pir_callbacks_t pir_cbs = {0};
+    rbf_indoor_pir_callbacks_t indoor_pir_cbs = {0};
     rbf_emergency_button_callbacks_t emergency_button_cbs = {0};
     rbf_temp_humi_callbacks_t temp_humi_cbs = {0};
     rbf_water_leak_callbacks_t water_leak_cbs = {0};
@@ -420,14 +421,14 @@ int test_rbf_init(void)
     keyfob_cbs.key_press_cb = &rbf_keyfob_key_press_callback;
     rbf_keyfob_register_callbacks(&keyfob_cbs);
 
-    sounder_cbs.hb_cb = &rbf_sounder_heartbeat_callback;
-    sounder_cbs.input_status_cb = &rbf_sounder_input_status_callback;
-    rbf_sounder_register_callbacks(&sounder_cbs);
+    outdoor_siren_cbs.hb_cb = &rbf_outdoor_siren_heartbeat_callback;
+    outdoor_siren_cbs.input_status_cb = &rbf_outdoor_siren_input_status_callback;
+    rbf_outdoor_siren_register_callbacks(&outdoor_siren_cbs);
 
-    pir_cbs.hb_cb = &rbf_pir_heartbeat_callback;
-    pir_cbs.input_evt_cb = &rbf_pir_input_evt_callback;
-    pir_cbs.input_status_cb = &rbf_pir_input_status_callback;
-    rbf_pir_register_callbacks(&pir_cbs);
+    indoor_pir_cbs.hb_cb = &rbf_indoor_pir_heartbeat_callback;
+    indoor_pir_cbs.input_evt_cb = &rbf_indoor_pir_input_evt_callback;
+    indoor_pir_cbs.input_status_cb = &rbf_indoor_pir_input_status_callback;
+    rbf_indoor_pir_register_callbacks(&indoor_pir_cbs);
 
     emergency_button_cbs.hb_cb = &rbf_emergency_button_heartbeat_callback;
     emergency_button_cbs.input_evt_cb = &rbf_emergency_button_input_evt_callback;
@@ -621,32 +622,32 @@ void test_list(char *argv[], int argc)
     rbf_get_register_info();
 }
 
-void test_outdoor_sounder(char *argv[], int argc)
+void test_outdoor_siren(char *argv[], int argc)
 {
-    unsigned char sounder_list[1];
-    RBF_sounder_param_t souner_param;
+    unsigned char outdoor_siren_list[1];
+    rbf_outdoor_siren_param_t souner_param;
 
-    sounder_list[0] = atoi(argv[0]);
+    outdoor_siren_list[0] = atoi(argv[0]);
 
     if (argc >= 3)
     {
         souner_param.mode = atoi(argv[1]);
         souner_param.action = atoi(argv[2]);
-        printf("Outdoor sounder [%d] control: mode %d, action %d\n",sounder_list[0], souner_param.mode, souner_param.action);
-        rbf_sounder_boardcast_control(&sounder_list[0], 1, &souner_param);
+        printf("Outdoor siren [%d] control: mode %d, action %d\n",outdoor_siren_list[0], souner_param.mode, souner_param.action);
+        rbf_outdoor_siren_boardcast_control(&outdoor_siren_list[0], 1, &souner_param);
     }
     else 
     {
-        RBF_sounder_volume_t volume = (RBF_sounder_volume_t)atoi(argv[1]);
-        printf("Outdoor sounder [%d] set volume %d\n",sounder_list[0], volume);
-        rbf_sounder_volume_set(sounder_list[0], volume);
+        rbf_outdoor_siren_volume_t volume = (rbf_outdoor_siren_volume_t)atoi(argv[1]);
+        printf("Outdoor siren [%d] set volume %d\n",outdoor_siren_list[0], volume);
+        rbf_outdoor_siren_volume_set(outdoor_siren_list[0], volume);
     }
 }
 
 void test_indoor_siren(char *argv[], int argc)
 {
     unsigned char indoor_siren_list[1];
-    RBF_indoor_siren_param_t indoor_siren_param;
+    rbf_indoor_siren_param_t indoor_siren_param;
 
     indoor_siren_list[0] = atoi(argv[0]);
 
@@ -659,23 +660,23 @@ void test_indoor_siren(char *argv[], int argc)
     }
     else 
     {
-        RBF_indoor_siren_volume_t volume = (RBF_indoor_siren_volume_t)atoi(argv[1]);
+        rbf_indoor_siren_volume_t volume = (rbf_indoor_siren_volume_t)atoi(argv[1]);
         printf("Indoor siren [%d] set volume %d\n",indoor_siren_list[0], volume);
         rbf_indoor_siren_volume_set(indoor_siren_list[0], volume);
     }
 }
 
-void test_pir(char *argv[], int argc)
+void test_indoor_pir(char *argv[], int argc)
 {
-    rbf_pir_config_t config;
+    rbf_indoor_pir_config_t config;
     uint8_t no = 0;
 
     no = atoi(argv[0]);
     config.tamper_enable = atoi(argv[1]);
     config.sensitivity = atoi(argv[2]);
 
-    printf("pir [%d] set tamper %d, sensitivity %d\n",no, config.tamper_enable, config.sensitivity);
-    rbf_pir_set(no, &config);
+    printf("indoor_pir [%d] set tamper %d, sensitivity %d\n",no, config.tamper_enable, config.sensitivity);
+    rbf_indoor_pir_set(no, &config);
 }
 
 void test_temphumi(char *argv[], int argc)
@@ -712,6 +713,7 @@ void test_sethub(char *argv[], int argc)
             printf("set hub custom code to %d\r\n", custom_code);
             rbf_set_hub_ex(RBF_FREQ_868, 0, custom_code);
             s_setFreq = RBF_FREQ_868;
+            s_setCustom_code = custom_code;
             break;
 
         case 1:
@@ -719,6 +721,7 @@ void test_sethub(char *argv[], int argc)
             printf("set hub custom code to %d\r\n", custom_code);
             rbf_set_hub_ex(RBF_FREQ_915, 0, custom_code);
             s_setFreq = RBF_FREQ_915;
+            s_setCustom_code = custom_code;
             break;
 
         case 2: 
@@ -726,24 +729,36 @@ void test_sethub(char *argv[], int argc)
             printf("set hub custom code to %d\r\n", custom_code);
             rbf_set_hub_ex(RBF_FREQ_433, 0, custom_code);
             s_setFreq = RBF_FREQ_433;
+            s_setCustom_code = custom_code;
             break;
         case 3: 
             printf("set hub frequency to aus 915\r\n");
             printf("set hub custom code to %d\r\n", custom_code);
             rbf_set_hub_ex(RBF_FREQ_916, 0, custom_code);
             s_setFreq = RBF_FREQ_916;
+            s_setCustom_code = custom_code;
             break;
         case 4: 
             printf("set hub frequency to wpc 868\r\n");
             printf("set hub custom code to %d\r\n", custom_code);
             rbf_set_hub_ex(RBF_FREQ_WPC_868, 0, custom_code);
             s_setFreq = RBF_FREQ_WPC_868;
+            s_setCustom_code = custom_code;
             break;
         case 5: 
             printf("set hub frequency to MAL 915\r\n");
             printf("set hub custom code to %d\r\n", custom_code);
             rbf_set_hub_ex(RBF_FREQ_MAL_915, 0, custom_code);
             s_setFreq = RBF_FREQ_MAL_915;
+            s_setCustom_code = custom_code;
+            break;
+        
+        case 6: 
+            printf("set hub frequency to INRA 868\r\n");
+            printf("set hub custom code to %d\r\n", custom_code);
+            rbf_set_hub_ex(RBF_FREQ_INRA_868, 0, custom_code);
+            s_setFreq = RBF_FREQ_INRA_868;
+            s_setCustom_code = custom_code;
             break;
         
         default:
@@ -794,7 +809,7 @@ void test_keypad(char *argv[], int argc)
         settings.err_led_state = atoi(argv[2]);
         settings.arm_led_state = atoi(argv[3]);
         settings.warn_led_state = atoi(argv[4]);
-        settings.enable_key_tone = atoi(argv[5]);
+        settings.key_tone_enable = atoi(argv[5]);
         settings.backlight_time = atoi(argv[6]);
         settings.lock_state = atoi(argv[7]);
 
@@ -802,7 +817,7 @@ void test_keypad(char *argv[], int argc)
                                                             settings.err_led_state,
                                                             settings.arm_led_state,
                                                             settings.warn_led_state,
-                                                            settings.enable_key_tone,
+                                                            settings.key_tone_enable,
                                                             settings.backlight_time,
                                                             settings.lock_state);
         rbf_keypad_set(no, &settings);
@@ -820,15 +835,15 @@ void test_relay(char *argv[], int argc)
         if (action == 0) {
             ctrl.action = RBF_RELAY_ACTION_OFF;
             printf("relay [%d] set off\r\n", no);
-            rbf_relay_ctrl(no, &ctrl);
+            rbf_relay_ctrl(no, &ctrl, NULL);
         } else if (action == 1) {
             ctrl.action = RBF_RELAY_ACTION_ON;
             printf("relay [%d] set on\r\n", no);
-            rbf_relay_ctrl(no, &ctrl);
+            rbf_relay_ctrl(no, &ctrl, NULL);
         } else if (action == 2) {
             ctrl.action = RBF_RELAY_ACTION_TOOGLE;
             printf("relay [%d] set toogle\r\n", no);
-            rbf_relay_ctrl(no, &ctrl);
+            rbf_relay_ctrl(no, &ctrl, NULL);
         }
     }
 }
@@ -845,15 +860,15 @@ void test_wall_switch(char *argv[], int argc)
         if (action == 0) {
             ctrl.action = RBF_RELAY_ACTION_OFF;
             printf("wall_switch [%d] set off\r\n", no);
-            rbf_wall_switch_ctrl(no, &ctrl);
+            rbf_wall_switch_ctrl(no, &ctrl, NULL);
         } else if (action == 1) {
             ctrl.action = RBF_RELAY_ACTION_ON;
             printf("wall_switch [%d] set on\r\n", no);
-            rbf_wall_switch_ctrl(no, &ctrl);
+            rbf_wall_switch_ctrl(no, &ctrl, NULL);
         } else if (action == 2) {
             ctrl.action = RBF_RELAY_ACTION_TOOGLE;
             printf("wall_switch [%d] set toogle\r\n", no);
-            rbf_wall_switch_ctrl(no, &ctrl);
+            rbf_wall_switch_ctrl(no, &ctrl, NULL);
         }
     }
 }
@@ -871,15 +886,15 @@ void test_smartplug(char *argv[], int argc)
         if (action == 0) {
             ctrl.action = RBF_SMARTPLUG_ACTION_OFF;
             printf("smartplug [%d] set off,lock[%d]\r\n", no, lock);
-            rbf_smartplug_ctrl(no, &ctrl);
+            rbf_smartplug_ctrl(no, &ctrl, NULL);
         } else if (action == 1) {
             ctrl.action = RBF_SMARTPLUG_ACTION_ON;
             printf("smartplug [%d] set on,lock[%d]\r\n", no, lock);
-            rbf_smartplug_ctrl(no, &ctrl);
+            rbf_smartplug_ctrl(no, &ctrl, NULL);
         } else if (action == 2) {
             ctrl.action = RBF_SMARTPLUG_ACTION_TOOGLE;
             printf("smartplug [%d] set toogle,lock[%d]\r\n", no, lock);
-            rbf_smartplug_ctrl(no, &ctrl);
+            rbf_smartplug_ctrl(no, &ctrl, NULL);
         }
     }
 }

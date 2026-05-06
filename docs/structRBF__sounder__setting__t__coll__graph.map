@@ -1,0 +1,4 @@
+<map id="RBF_sounder_setting_t" name="RBF_sounder_setting_t">
+<area shape="rect" id="node1" title="Sounder setting entry pairing a device number with its control parameters." alt="" coords="5,95,176,121"/>
+<area shape="rect" id="node2" href="$structrbf__sounder__param__t.html" title="Sounder control parameters Sounder mode represents a persistent state, while sounder action represent..." alt="" coords="11,5,171,32"/>
+</map>

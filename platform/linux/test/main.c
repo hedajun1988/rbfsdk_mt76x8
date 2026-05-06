@@ -53,7 +53,8 @@ stCmd_t all_cmds[] = {
     {"init",init_rbf,"init rbf"},
     {"hub", test_hub, "hub [version][noise][reset]"},
     {"device", test_device, "device [delete][all/cat_id][no]"},
-    {"sethub", test_sethub, "sethub [0/1/2/3/4/5] 0:868 1:915 2:433 3:aus 915 4: wpc 868 5:mal 915[custom code]"},
+    {"sethub", test_sethub, "sethub [0/1/2/3/4/5/6] 0:868 1:915 2:433 3:aus 915 4: wpc 868 5:mal 915 6:inner868 [custom code]"},
+    {"outdoorsiren", test_outdoor_siren, "outdoorsiren [no] [mode] [action]"},
 } ;
 
 

@@ -1,0 +1,5 @@
+<map id="rbf_relay_callbacks_t" name="rbf_relay_callbacks_t">
+<area shape="rect" id="node1" title="Relay callback functions cluster." alt="" coords="119,95,279,121"/>
+<area shape="rect" id="node2" href="$structrbf__relay__output__status__t.html" title="Relay output status reported on state change." alt="" coords="5,5,193,32"/>
+<area shape="rect" id="node3" href="$structrbf__relay__heartbeat__t.html" title="Relay heartbeat data reported periodically by the device." alt="" coords="218,5,381,32"/>
+</map>

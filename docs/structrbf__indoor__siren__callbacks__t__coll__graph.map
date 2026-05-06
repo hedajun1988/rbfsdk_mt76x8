@@ -1,0 +1,5 @@
+<map id="rbf_indoor_siren_callbacks_t" name="rbf_indoor_siren_callbacks_t">
+<area shape="rect" id="node1" title="Indoor siren callback functions cluster." alt="" coords="91,109,297,136"/>
+<area shape="rect" id="node2" href="$structrbf__indoor__siren__input__status__t.html" title="Indoor siren status information." alt="" coords="5,5,172,47"/>
+<area shape="rect" id="node3" href="$structrbf__indoor__siren__heartbeat__t.html" title="Structure to represent an indoor siren device heartbeat event." alt="" coords="196,13,405,39"/>
+</map>

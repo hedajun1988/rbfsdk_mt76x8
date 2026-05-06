@@ -1,0 +1,5 @@
+<map id="rbf_indoor_pir_callbacks_t" name="rbf_indoor_pir_callbacks_t">
+<area shape="rect" id="node1" title="Indoor PIR sensor callback functions cluster." alt="" coords="84,109,276,136"/>
+<area shape="rect" id="node2" href="$structrbf__indoor__pir__input__status__t.html" title="Indoor PIR sensor input status (fault and tamper)" alt="" coords="5,5,157,47"/>
+<area shape="rect" id="node3" href="$structrbf__indoor__pir__heartbeat__t.html" title="Structure to represent an indoor PIR device heartbeat event." alt="" coords="181,13,376,39"/>
+</map>
